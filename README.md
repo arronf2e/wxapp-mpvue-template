@@ -1,4 +1,4 @@
-# wxapp-mpvue-template
+# my-project
 
 > A Mpvue project
 

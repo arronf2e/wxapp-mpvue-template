@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import api from '@/utils/api'
+
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -12,12 +15,18 @@ const store = new Vuex.Store({
   mutations: {
     increment: (state) => {
       const obj = state
-      obj.count += 1
+      obj.count += 2
     },
     decrement: (state) => {
       const obj = state
-      obj.count -= 1
+      obj.count -= 2
     }
+  },
+  actions: {
+    async getNewsList ({ state, commit }, init) {
+      const news = await api.getNewsList()
+      console.log(news, 'newsnews')
+    },
   }
 })
 

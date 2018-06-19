@@ -24,6 +24,8 @@
 
 <script>
 import card from '@/components/card'
+import wx from 'wx'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -37,7 +39,14 @@ export default {
     card
   },
 
+  mounted () {
+    this.refresh()
+  },
+
   methods: {
+    ...mapActions([
+      'getNewsList'
+    ]),
     bindViewTap () {
       const url = './logs'
       wx.navigateTo({ url })
@@ -57,6 +66,11 @@ export default {
     clickHandle (msg, ev) {
       // eslint-disable-next-line
       console.log('clickHandle:', msg, ev)
+    },
+    async refresh () {
+      await Promise.all([
+        this.getNewsList(true),
+      ])
     }
   },
 
