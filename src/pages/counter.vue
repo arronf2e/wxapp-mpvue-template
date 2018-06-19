@@ -6,25 +6,24 @@
       <button @click="decrement">-</button>
     </p>
 
-    <a href="/pages/index/main" class="home">去往首页</a>
+    <a href="/pages/index" class="home">去往首页</a>
   </div>
 </template>
 
 <script>
-// Use Vuex
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   computed: {
-    count () {
-      return store.state.count
-    }
+    ...mapState([
+      'count'
+    ])
   },
   methods: {
-    increment () {
-      store.commit('increment')
-    },
-    decrement () {
-      store.commit('decrement')
-    }
+    ...mapMutations([
+      'increment',
+      'decrement'
+    ])
   }
 }
 </script>
